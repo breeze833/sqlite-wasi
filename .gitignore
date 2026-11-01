@@ -1,0 +1,18 @@
+# Build output & caches
+build/
+dist/
+lib/
+include/
+bin/*.wasm
+wasi-sdk*/
+*.tgz
+*.zip
+*.tar.gz
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS / Editor
+.DS_Store
+*.swp

@@ -1,0 +1,30 @@
+{
+  "name": "sqlite-wasi",
+  "version": "3.54.1",
+  "description": "Precompiled SQLite C library and CLI for WASI Preview 1 with Node.js runner",
+  "main": "index.js",
+  "bin": {
+    "sqlite-wasi": "./bin/cli.js"
+  },
+  "files": [
+    "index.js",
+    "bin/cli.js",
+    "bin/sqlite3.wasm",
+    "lib/libsqlite3.a",
+    "include/sqlite3.h",
+    "include/sqlite3ext.h"
+  ],
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "pack": "npm pack"
+  },
+  "keywords": [
+    "sqlite",
+    "sqlite3",
+    "wasi",
+    "wasip1",
+    "wasm",
+    "webassembly"
+  ],
+  "license": "blessing"
+}
