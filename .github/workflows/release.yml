@@ -51,6 +51,18 @@ jobs:
           TAG="v${VERSION}"
           ARCHIVE="dist/sqlite-wasi-${VERSION}.tgz"
 
+          printf "%s\n" \
+            "Precompiled SQLite ${VERSION} library and CLI for WASI Preview 1." \
+            "" \
+            "Package file: \`sqlite-wasi-${VERSION}.tgz\`" \
+            "" \
+            "### Contents:" \
+            "- **CLI Executable**: \`bin/sqlite3.wasm\`" \
+            "- **Static Library**: \`lib/libsqlite3.a\`" \
+            "- **C Headers**: \`include/sqlite3.h\`, \`include/sqlite3ext.h\`" \
+            "- **JavaScript Runner**: \`bin/cli.js\` (runnable via \`npx sqlite-wasi\`)" \
+            > release_notes.md
+
           # Create release if it does not exist, or upload to existing release
           if gh release view "${TAG}" >/dev/null 2>&1; then
             echo "Release ${TAG} exists. Uploading asset..."
@@ -60,13 +72,5 @@ jobs:
             gh release create "${TAG}" \
               "${ARCHIVE}" \
               --title "SQLite WASI v${VERSION}" \
-              --notes "Precompiled SQLite ${VERSION} library and CLI for WASI Preview 1.
-
-Package file: \`sqlite-wasi-${VERSION}.tgz\`
-
-### Contents:
-- **CLI Executable**: \`bin/sqlite3.wasm\`
-- **Static Library**: \`lib/libsqlite3.a\`
-- **C Headers**: \`include/sqlite3.h\`, \`include/sqlite3ext.h\`
-- **JavaScript Runner**: \`bin/cli.js\` (runnable via \`npx sqlite-wasi\`)"
+              --notes-file release_notes.md
           fi
